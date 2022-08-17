@@ -1,0 +1,7 @@
+body {
+    background-color: aliceblue;
+}
+
+button:hover {
+    opacity: 0.4;
+}
