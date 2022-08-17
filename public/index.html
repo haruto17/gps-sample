@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<h1>こんにちは</h1>
+		<button name="Get Pos" onclick="getPos();">Get Pos</button>
+		<p>緯度：<span id="latitude"></span></p>
+		<p>経度：<span id="longitude"></span></p>
+	</body>
+	<script>
+		// 便利関数(jqueryに依存しないため)
+		function _(id) {
+			return document.getElementById(id);
+		}
+		// 成功
+		function success(pos) {
+			const lat = pos.coords.latitude;
+			const lng = pos.coords.longitude;
+
+			document.querySelector("#latitude").innerHTML = lat;
+			document.querySelector("#longitude").innerHTML = lng;
+		}
+		// 失敗
+		function fail(pos) {
+			alert("位置情報の取得に失敗しました。エラーコード：" + pos);
+		}
+		// 取得
+		function getPos() {
+			try {
+				navigator.geolocation.getCurrentPosition(success, fail);
+			} catch (e) {
+				alert("お使いのブラウザは対応していません。");
+			}
+		}
+	</script>
+</html>
